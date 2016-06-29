@@ -6,6 +6,7 @@ import org.scribe.builder.api.TwitterApi;
 
 import android.content.Context;
 
+import com.codepath.apps.mysimpletweet.models.User;
 import com.codepath.oauth.OAuthBaseClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -63,9 +64,17 @@ public class TwitterClient extends OAuthBaseClient {
 		getClient().get(apiUrl, params, handler);
 	}
 
-	public void getUserInfo(AsyncHttpResponseHandler handler) {
-		String apiUrl = getApiUrl("/account/verify_credentials.json");
-		getClient().get(apiUrl, null, handler);
+	public void getUserInfo(String name, AsyncHttpResponseHandler handler) {
+		String apiUrl;
+		if (name != null) {
+			apiUrl = getApiUrl("/users/show.json");
+			RequestParams params = new RequestParams();
+			params.put("screen_name", name);
+			getClient().get(apiUrl, params, handler);
+		} else {
+			apiUrl = getApiUrl("/account/verify_credentials.json");
+			getClient().get(apiUrl, null, handler);
+		}
 	}
 
 	//Compose Tweet

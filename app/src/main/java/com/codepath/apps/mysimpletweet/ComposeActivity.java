@@ -46,7 +46,7 @@ public class ComposeActivity extends AppCompatActivity {
 
         client = TwitterApplication.getRestClient();
         // get account info
-        client.getUserInfo(new JsonHttpResponseHandler(){
+        client.getUserInfo(null, new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 user = User.fromJson(response);

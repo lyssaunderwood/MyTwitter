@@ -11,8 +11,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:background="#0f85e6"
-        android:layout_marginRight="5dp"
-        android:onClick="toUserProfile" />
+        android:layout_marginRight="5dp" />
 
     <TextView
         android:layout_width="wrap_content"
