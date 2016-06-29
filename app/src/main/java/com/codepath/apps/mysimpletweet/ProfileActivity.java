@@ -1,5 +1,7 @@
 package com.codepath.apps.mysimpletweet;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,6 +33,7 @@ public class ProfileActivity extends AppCompatActivity {
                 user = User.fromJson(response);
                 // my current user account's info
                 getSupportActionBar().setTitle("@" + user.getScreenName());
+                getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#4099FF")));
                 populateProfileHeader(user);
             }
         });

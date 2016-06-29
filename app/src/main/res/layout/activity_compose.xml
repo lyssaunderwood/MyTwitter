@@ -11,8 +11,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:background="#0f85e6"
-        android:layout_marginRight="5dp"
-        android:onClick="toUserProfile" />
+        android:layout_marginRight="5dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -26,16 +25,7 @@
         android:textStyle="bold"
         android:layout_marginRight="5dp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Text"
-        android:id="@+id/tvBody"
-        android:layout_below="@+id/tvUserName"
-        android:layout_alignLeft="@+id/tvUserName"
-        android:layout_alignStart="@+id/tvUserName"
-        android:autoLink="all"
-        android:linksClickable="true"/>
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -46,12 +36,29 @@
         android:layout_toRightOf="@+id/tvUserName"
         android:layout_toEndOf="@+id/tvUserName" />
 
-    <TextView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="0m"
-        android:id="@+id/tvTimestamp"
-        android:layout_alignParentTop="true"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/etNewTweet"
+        android:hint="What&apos;s happening?"
+        android:layout_below="@+id/ivProfileImage"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/btnTweet"
+        android:layout_alignEnd="@+id/btnTweet" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tweet"
+        android:id="@+id/btnTweet"
+        android:textColor="#ffffff"
+        android:background="#4099ff"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:onClick="onTweet"/>
+
 </RelativeLayout>

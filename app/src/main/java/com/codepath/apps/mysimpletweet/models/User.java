@@ -2,7 +2,9 @@ package com.codepath.apps.mysimpletweet.models;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
+@Parcel
 public class User {
     // list attributes
     public String getName() {
@@ -53,7 +55,6 @@ public class User {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
 
         return u;
     }

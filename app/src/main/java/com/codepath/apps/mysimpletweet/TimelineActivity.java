@@ -1,6 +1,8 @@
 package com.codepath.apps.mysimpletweet;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -18,22 +20,32 @@ import com.codepath.apps.mysimpletweet.Fragments.HomeTimelineFragment;
 import com.codepath.apps.mysimpletweet.Fragments.MentionsTimelineFragment;
 import com.codepath.apps.mysimpletweet.Fragments.TweetsListFragment;
 import com.codepath.apps.mysimpletweet.models.Tweet;
+import com.codepath.apps.mysimpletweet.models.User;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.Header;
 
 public class TimelineActivity extends AppCompatActivity {
+    private final int REQUEST_CODE = 20;
 
+    HomeTimelineFragment homeTimeline;
+    MentionsTimelineFragment mentions;
+    Tweet tweetToRefresh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeline);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#4099FF")));
+
+        homeTimeline = new HomeTimelineFragment();
+        mentions = new MentionsTimelineFragment();
 
         // get the viewpager
         ViewPager vpPager = (ViewPager) findViewById(R.id.viewpager);
@@ -67,6 +79,11 @@ public class TimelineActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void onCompose(MenuItem item) {
+        Intent j = new Intent(this, ComposeActivity.class);
+        startActivityForResult(j, REQUEST_CODE);
+    }
+
     // return the order of the fragments in the view pager
     public class TweetsPagerAdapter extends FragmentPagerAdapter {
         private String tabTitles[] = {"Home", "Mentions"};
@@ -79,13 +96,14 @@ public class TimelineActivity extends AppCompatActivity {
         @Override
         public Fragment getItem(int position) {
             if (position == 0) {
-                return new HomeTimelineFragment();
+                return homeTimeline;
             } else if (position == 1) {
-                return new MentionsTimelineFragment();
+                return mentions;
             } else {
                 return null;
             }
         }
+        
 
         //returns tab title at top
         @Override
@@ -100,4 +118,11 @@ public class TimelineActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
+            tweetToRefresh = (Tweet) Parcels.unwrap(data.getParcelableExtra("new_tweet"));
+            homeTimeline.addTweet(tweetToRefresh);
+        }
+    }
 }

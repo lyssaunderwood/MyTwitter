@@ -1,12 +1,19 @@
 package com.codepath.apps.mysimpletweet.models;
 
+import android.text.format.DateUtils;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 //Parse the json + store the data, encapsulate any state logic or display logic
+@Parcel
 public class Tweet {
     // list the attributes
     public String getBody() {
@@ -22,10 +29,13 @@ public class Tweet {
         return user;
     }
 
-    private String body;
-    private long uid; // unique id for the tweet
-    private User user; // store imbedded user object
-    private String createdAt;
+    public String body;
+    public long uid; // unique id for the tweet
+    public User user; // store imbedded user object
+    public String createdAt;
+
+    public Tweet() {
+    }
 
     // deserialize the JSON
     public static Tweet fromJSON(JSONObject jsonObject) {
@@ -61,5 +71,40 @@ public class Tweet {
         }
 
         return tweets;
+    }
+
+    public String getRelativeTimeAgo(String rawJsonDate) {
+        String twitterFormat = "EEE MMM dd HH:mm:ss ZZZZZ yyyy";
+        SimpleDateFormat sf = new SimpleDateFormat(twitterFormat, Locale.ENGLISH);
+        sf.setLenient(true);
+
+        String relativeDate = "";
+        try {
+            long dateMillis = sf.parse(rawJsonDate).getTime();
+            relativeDate = DateUtils.getRelativeTimeSpanString(dateMillis,
+                    System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS).toString();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        String returnDate;
+
+        if (relativeDate.contains("minute")) {
+            returnDate = relativeDate.substring(0, relativeDate.indexOf(" "));
+            returnDate += "m";
+        } else if (relativeDate.contains("second")) {
+            returnDate = relativeDate.substring(0, relativeDate.indexOf(" "));
+            returnDate += "s";
+        } else if (relativeDate.contains("hour")) {
+            returnDate = relativeDate.substring(0, relativeDate.indexOf(" "));
+            returnDate += "h";
+        } else if (relativeDate.contains("day")) {
+            returnDate = relativeDate.substring(0, relativeDate.indexOf(" "));
+            returnDate += "d";
+        } else {
+            returnDate = relativeDate;
+        }
+
+        return returnDate;
     }
 }
