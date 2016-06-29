@@ -36,7 +36,7 @@ public class ProfileActivity extends AppCompatActivity {
                 user = User.fromJson(response);
                 // my current user account's info
                 getSupportActionBar().setTitle("@" + user.getScreenName());
-                getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#4099FF")));
+                getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#55acee")));
                 populateProfileHeader(user);
             }
         });

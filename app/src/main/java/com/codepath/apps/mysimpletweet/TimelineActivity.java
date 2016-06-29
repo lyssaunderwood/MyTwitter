@@ -42,7 +42,7 @@ public class TimelineActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeline);
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#4099FF")));
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#55acee")));
 
         homeTimeline = new HomeTimelineFragment();
         mentions = new MentionsTimelineFragment();
@@ -103,7 +103,7 @@ public class TimelineActivity extends AppCompatActivity {
                 return null;
             }
         }
-        
+
 
         //returns tab title at top
         @Override

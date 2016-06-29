@@ -6,7 +6,11 @@ import android.graphics.drawable.ColorDrawable;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,14 +39,18 @@ public class ComposeActivity extends AppCompatActivity {
     TextView tvHandle;
     TextView tvUserName;
     ImageView ivProfileImage;
+    TextView tvCount;
 
     String newTweet;
     Tweet tweet;
+    int tweetCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compose);
+        getSupportActionBar().setTitle("");
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#55acee")));
 
         client = TwitterApplication.getRestClient();
         // get account info
@@ -51,11 +59,58 @@ public class ComposeActivity extends AppCompatActivity {
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 user = User.fromJson(response);
                 // my current user account's info
-                getSupportActionBar().setTitle("");
-                getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#4099FF")));
                 populateHeader(user);
             }
         });
+
+        tweetCount = 140;
+        tvCount = (TextView) findViewById(R.id.tvCount);
+        tvCount.setText(String.valueOf(tweetCount));
+        etNewTweet = (EditText) findViewById(R.id.etNewTweet);
+        etNewTweet.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // Fires right as the text is being changed (even supplies the range of text)
+                //Toast.makeText(getApplicationContext(), String.valueOf(count), Toast.LENGTH_SHORT).show();
+                tweetCount--;
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count,
+                                          int after) {
+                // Fires right before text is changing
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // Fires right after the text has changed
+                //tvCount.setText();
+                tvCount.setText(String.valueOf(tweetCount));
+                if (tweetCount < 0) {
+                    tvCount.setTextColor(Color.parseColor("#FF0000"));
+                }
+            }
+        });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_compose, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        //if (id == R.id.action_settings) {
+        //  return true;
+        //}
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void onClickExit(MenuItem mi) {
+        finish();
     }
 
     private void populateHeader(User user) {
@@ -93,4 +148,5 @@ public class ComposeActivity extends AppCompatActivity {
         });
 
     }
+
 }

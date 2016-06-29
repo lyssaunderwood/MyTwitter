@@ -2,6 +2,7 @@ package com.codepath.apps.mysimpletweet;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +40,7 @@ public class TweetsArrayAdapter extends ArrayAdapter<Tweet> {
         TextView tvHandle = (TextView) convertView.findViewById(R.id.tvHandle);
         TextView tvTimestamp = (TextView) convertView.findViewById(R.id.tvTimestamp);
         // populate subviews
+        //Log.d("HELP", tweet.getRelativeTimeAgo(tweet.getCreatedAt()));
         tvTimestamp.setText(tweet.getRelativeTimeAgo(tweet.getCreatedAt()));
         tvHandle.setText("@" + tweet.getUser().getScreenName());
         tvUserName.setText(tweet.getUser().getName());

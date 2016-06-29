@@ -55,10 +55,21 @@
         android:text="@string/tweet"
         android:id="@+id/btnTweet"
         android:textColor="#ffffff"
-        android:background="#4099ff"
+        android:background="#55acee"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
+        android:layout_marginLeft="5dp"
         android:onClick="onTweet"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="140"
+        android:id="@+id/tvCount"
+        android:layout_alignBottom="@+id/btnTweet"
+        android:layout_toLeftOf="@+id/btnTweet"
+        android:layout_toStartOf="@+id/btnTweet"
+        android:layout_marginBottom="15dp"/>
 
 </RelativeLayout>

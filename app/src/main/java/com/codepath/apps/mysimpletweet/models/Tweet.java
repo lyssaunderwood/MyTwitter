@@ -87,19 +87,27 @@ public class Tweet {
             e.printStackTrace();
         }
 
-        String returnDate;
+        String returnDate = "";
+        int replace = 0;
 
         if (relativeDate.contains("minute")) {
-            returnDate = relativeDate.substring(0, relativeDate.indexOf(" "));
+            replace = relativeDate.indexOf(" ");
+            returnDate = relativeDate.substring(0, replace);
             returnDate += "m";
         } else if (relativeDate.contains("second")) {
-            returnDate = relativeDate.substring(0, relativeDate.indexOf(" "));
+            replace = relativeDate.indexOf(" ");
+            returnDate = relativeDate.substring(0, replace);
             returnDate += "s";
         } else if (relativeDate.contains("hour")) {
-            returnDate = relativeDate.substring(0, relativeDate.indexOf(" "));
+            replace = relativeDate.indexOf(" ");
+            returnDate = relativeDate.substring(0, replace);
             returnDate += "h";
-        } else if (relativeDate.contains("day")) {
-            returnDate = relativeDate.substring(0, relativeDate.indexOf(" "));
+        } else if (relativeDate.equals("Yesterday")) {
+            returnDate = "1d";
+        }
+        else if (relativeDate.contains("day")) {
+            replace = relativeDate.indexOf(" ");
+            returnDate = relativeDate.substring(0, replace);
             returnDate += "d";
         } else {
             returnDate = relativeDate;
