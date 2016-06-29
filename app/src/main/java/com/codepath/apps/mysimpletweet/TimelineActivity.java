@@ -7,8 +7,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.SwitchCompat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -55,6 +57,7 @@ public class TimelineActivity extends AppCompatActivity {
         PagerSlidingTabStrip tabStrip = (PagerSlidingTabStrip) findViewById(R.id.tabs);
         // attach the tabStrip to the viewpager
         tabStrip.setViewPager(vpPager);
+
     }
 
     @Override
@@ -82,6 +85,10 @@ public class TimelineActivity extends AppCompatActivity {
     public void onCompose(MenuItem item) {
         Intent j = new Intent(this, ComposeActivity.class);
         startActivityForResult(j, REQUEST_CODE);
+    }
+
+    public void onSearch(MenuItem item) {
+        Toast.makeText(getApplicationContext(), "Yay", Toast.LENGTH_SHORT).show();
     }
 
     // return the order of the fragments in the view pager

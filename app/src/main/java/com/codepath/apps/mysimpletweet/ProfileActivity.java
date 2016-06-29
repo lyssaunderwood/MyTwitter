@@ -16,6 +16,7 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONObject;
 
 import cz.msebera.android.httpclient.Header;
+import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 
 public class ProfileActivity extends AppCompatActivity {
     TwitterClient client;
@@ -35,8 +36,9 @@ public class ProfileActivity extends AppCompatActivity {
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 user = User.fromJson(response);
                 // my current user account's info
-                getSupportActionBar().setTitle("@" + user.getScreenName());
-                getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#55acee")));
+                //getSupportActionBar().setTitle("@" + user.getScreenName());
+                //getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#55acee")));
+                getSupportActionBar().hide();
                 populateProfileHeader(user);
             }
         });
@@ -59,10 +61,12 @@ public class ProfileActivity extends AppCompatActivity {
         TextView tvFollowers = (TextView) findViewById(R.id.tvFollowers);
         TextView tvFollowing = (TextView) findViewById(R.id.tvFollowing);
         ImageView ivProfileImage = (ImageView) findViewById(R.id.ivProfileImage);
+        ImageView ivBannerImage = (ImageView) findViewById(R.id.ivBannerImage);
         tvName.setText(user.getName());
         tvTagline.setText(user.getTagline());
         tvFollowers.setText(user.getFollowersCount() + " Followers");
         tvFollowing.setText(user.getFriendsCount() + " Following");
-        Picasso.with(this).load(user.getProfileImageUrl()).into(ivProfileImage);
+        Picasso.with(this).load(user.getProfileImageUrl()).transform(new RoundedCornersTransformation(4, 4)).into(ivProfileImage);
+        Picasso.with(this).load(user.getBannerImageUrl()).into(ivBannerImage);
     }
 }

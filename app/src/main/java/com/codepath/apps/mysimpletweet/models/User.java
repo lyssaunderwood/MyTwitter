@@ -32,10 +32,17 @@ public class User {
         return friendsCount;
     }
 
+
+    public String getBannerImageUrl() {
+        return bannerImageUrl;
+    }
+
+
     private String name;
     private long uid;
     private String screenName;
     private String profileImageUrl;
+    private String bannerImageUrl;
     private String tagline;
     private int followersCount;
     private int friendsCount;
@@ -49,6 +56,7 @@ public class User {
             u.uid = json.getLong("id");
             u.screenName = json.getString("screen_name");
             u.profileImageUrl = json.getString("profile_image_url");
+            u.bannerImageUrl = json.getString("profile_banner_url");
             u.tagline = json.getString("description");
             u.followersCount = json.getInt("followers_count");
             u.friendsCount = json.getInt("friends_count");

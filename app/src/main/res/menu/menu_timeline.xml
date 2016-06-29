@@ -19,5 +19,15 @@
         android:title="Compose"
         android:onClick="onCompose"
         ></item>
+
+    <item
+        android:id="@+id/miSearch"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_search"
+        android:title="Search"
+        android:onClick="onSearch"
+        ></item>
+
+
 </menu>
 

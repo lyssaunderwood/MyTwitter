@@ -72,7 +72,7 @@ public class ComposeActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 // Fires right as the text is being changed (even supplies the range of text)
                 //Toast.makeText(getApplicationContext(), String.valueOf(count), Toast.LENGTH_SHORT).show();
-                tweetCount--;
+                tweetCount = 140 - (s.length());
             }
 
             @Override
