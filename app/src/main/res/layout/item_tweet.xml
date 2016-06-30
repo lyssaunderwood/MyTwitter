@@ -16,7 +16,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Name"
+        android:text="@string/name"
         android:id="@+id/tvUserName"
         android:layout_marginBottom="5dp"
         android:layout_alignParentTop="true"
@@ -39,7 +39,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="\@handle"
+        android:text="@string/handle"
         android:id="@+id/tvHandle"
         android:layout_alignTop="@+id/tvUserName"
         android:layout_toRightOf="@+id/tvUserName"
@@ -48,10 +48,20 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="0m"
+        android:text="@string/Timestamp"
         android:id="@+id/tvTimestamp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/arrow"
+        android:id="@+id/btnReply"
+        android:layout_below="@+id/tvBody"
+        android:layout_toRightOf="@+id/ivProfileImage"
+        android:layout_toEndOf="@+id/ivProfileImage" />
 
 </RelativeLayout>

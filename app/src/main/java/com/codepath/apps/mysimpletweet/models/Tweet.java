@@ -28,11 +28,15 @@ public class Tweet {
     public User getUser() {
         return user;
     }
+    public String getImageUrl() {
+        return imageUrl;
+    }
 
     public String body;
     public long uid; // unique id for the tweet
     public User user; // store imbedded user object
     public String createdAt;
+    public String imageUrl;
 
     public Tweet() {
     }
@@ -46,6 +50,7 @@ public class Tweet {
             tweet.uid = jsonObject.getLong("id");
             tweet.createdAt = jsonObject.getString("created_at");
             tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
+            tweet.imageUrl = jsonObject.getString("media_url");
         } catch (JSONException e) {
             e.printStackTrace();
         }

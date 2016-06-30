@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ProgressBar;
 
 import com.codepath.apps.mysimpletweet.Fragments.MentionsTimelineFragment;
 import com.codepath.apps.mysimpletweet.Fragments.SearchFragment;
@@ -21,14 +22,12 @@ import org.json.JSONObject;
 import cz.msebera.android.httpclient.Header;
 
 public class SearchActivity extends AppCompatActivity {
-    String addQuery;
-    TwitterClient client;
-    //SearchFragment searchFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+
         getSupportActionBar().setTitle("");
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#55acee")));
 
@@ -49,6 +48,7 @@ public class SearchActivity extends AppCompatActivity {
              ft.commit();
 
              searchView.clearFocus();
+
              return true;
             }
 
@@ -66,7 +66,7 @@ public class SearchActivity extends AppCompatActivity {
     }
 
 
-    public void onReturn(MenuItem itembjbvffetfkjdvbgnjkdfvvcvffdbuflj) {
+    public void onReturn(MenuItem item) {
         finish();
     }
 }

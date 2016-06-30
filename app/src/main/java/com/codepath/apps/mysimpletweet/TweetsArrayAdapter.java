@@ -1,5 +1,6 @@
 package com.codepath.apps.mysimpletweet;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -7,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,7 +30,7 @@ public class TweetsArrayAdapter extends ArrayAdapter<Tweet> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // get the tweet
-        Tweet tweet = getItem(position);
+        final Tweet tweet = getItem(position);
         // find or inflate the template
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_tweet, parent, false);
@@ -39,6 +41,7 @@ public class TweetsArrayAdapter extends ArrayAdapter<Tweet> {
         TextView tvBody = (TextView) convertView.findViewById(R.id.tvBody);
         TextView tvHandle = (TextView) convertView.findViewById(R.id.tvHandle);
         TextView tvTimestamp = (TextView) convertView.findViewById(R.id.tvTimestamp);
+        Button btnReply = (Button) convertView.findViewById(R.id.btnReply);
         // populate subviews
         //Log.d("HELP", tweet.getRelativeTimeAgo(tweet.getCreatedAt()));
         tvTimestamp.setText(tweet.getRelativeTimeAgo(tweet.getCreatedAt()));
@@ -57,6 +60,18 @@ public class TweetsArrayAdapter extends ArrayAdapter<Tweet> {
                 Intent toProfile = new Intent(getContext(), ProfileActivity.class);
                 toProfile.putExtra("screen_name", (String) ivProfileImage.getTag());
                 getContext().startActivity(toProfile);
+            }
+        });
+
+        btnReply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                long replyTo = tweet.getUid();
+                String usernameReply = ("@" + tweet.getUser().getScreenName());
+                Intent compose = new Intent(getContext(), ComposeActivity.class);
+                compose.putExtra("name", usernameReply);
+                compose.putExtra("reply", replyTo);
+                getContext().startActivity(compose);
             }
         });
 

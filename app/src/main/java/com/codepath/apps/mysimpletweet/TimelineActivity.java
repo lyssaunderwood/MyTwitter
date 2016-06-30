@@ -87,6 +87,10 @@ public class TimelineActivity extends AppCompatActivity {
 
     public void onCompose(MenuItem item) {
         Intent j = new Intent(this, ComposeActivity.class);
+        long reply = 0;
+        String name = "";
+        j.putExtra("name", name);
+        j.putExtra("reply", reply);
         startActivityForResult(j, REQUEST_CODE);
     }
 

@@ -52,7 +52,7 @@
             android:label="@string/title_activity_timeline" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".ComposeActivity" />
-        <activity android:name=".SearchActivity"></activity>
+        <activity android:name=".SearchActivity" />
     </application>
 
 </manifest>

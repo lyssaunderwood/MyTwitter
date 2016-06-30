@@ -6,7 +6,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
+import com.codepath.apps.mysimpletweet.R;
 import com.codepath.apps.mysimpletweet.TwitterApplication;
 import com.codepath.apps.mysimpletweet.TwitterClient;
 import com.codepath.apps.mysimpletweet.models.Tweet;

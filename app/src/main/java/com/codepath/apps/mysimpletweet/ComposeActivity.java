@@ -45,10 +45,17 @@ public class ComposeActivity extends AppCompatActivity {
     Tweet tweet;
     int tweetCount;
 
+    long replyTo;
+    String usernameReply;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compose);
+
+        usernameReply = getIntent().getStringExtra("name");
+        replyTo = getIntent().getLongExtra("reply", 0);
+
         getSupportActionBar().setTitle("");
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#55acee")));
 
@@ -124,6 +131,10 @@ public class ComposeActivity extends AppCompatActivity {
         tvUserName = (TextView) findViewById(R.id.tvUserName);
         ivProfileImage = (ImageView) findViewById(R.id.ivProfileImage);
 
+        if (usernameReply != "") {
+            etNewTweet.setText(usernameReply);
+        }
+
         tvUserName.setText(user.getName());
         tvHandle.setText("@" + user.getScreenName());
 
@@ -133,7 +144,7 @@ public class ComposeActivity extends AppCompatActivity {
     public void onTweet(View view) {
         newTweet = etNewTweet.getText().toString();
 
-        client.postTweet(newTweet, new JsonHttpResponseHandler() {
+        client.postTweet(newTweet, replyTo, new JsonHttpResponseHandler() {
             // Success
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject json) {
