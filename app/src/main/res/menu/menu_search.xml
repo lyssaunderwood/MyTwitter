@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".com.codepath.apps.mysimpletweet.SearchActivity">
+
+    <item
+        android:id="@+id/miClickToSearch"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_search"
+        android:title="Search"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        ></item>
+
+    <item
+        android:id="@+id/miBack"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_back"
+        android:title="Back"
+        android:onClick="onReturn"
+        ></item>
+
+</menu>

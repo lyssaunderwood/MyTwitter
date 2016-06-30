@@ -6,10 +6,12 @@ import android.graphics.drawable.ColorDrawable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.SwitchCompat;
 import android.util.Log;
 import android.view.Menu;
@@ -39,6 +41,7 @@ public class TimelineActivity extends AppCompatActivity {
     HomeTimelineFragment homeTimeline;
     MentionsTimelineFragment mentions;
     Tweet tweetToRefresh;
+    //String addQuery;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +66,7 @@ public class TimelineActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_timeline, menu);
-        return true;
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -88,7 +91,9 @@ public class TimelineActivity extends AppCompatActivity {
     }
 
     public void onSearch(MenuItem item) {
-        Toast.makeText(getApplicationContext(), "Yay", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "Yay", Toast.LENGTH_SHORT).show();
+        Intent search = new Intent(this, SearchActivity.class);
+        startActivity(search);
     }
 
     // return the order of the fragments in the view pager

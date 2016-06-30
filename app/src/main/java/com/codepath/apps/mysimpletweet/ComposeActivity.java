@@ -88,6 +88,10 @@ public class ComposeActivity extends AppCompatActivity {
                 tvCount.setText(String.valueOf(tweetCount));
                 if (tweetCount < 0) {
                     tvCount.setTextColor(Color.parseColor("#FF0000"));
+                    btnTweet.setEnabled(false);
+                } else {
+                    tvCount.setTextColor(Color.parseColor("#A9A9A9"));
+                    btnTweet.setEnabled(true);
                 }
             }
         });
