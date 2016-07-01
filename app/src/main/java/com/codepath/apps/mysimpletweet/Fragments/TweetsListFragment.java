@@ -77,7 +77,14 @@ public class TweetsListFragment extends Fragment {
         tweets = new ArrayList<>();
         // Construct the adapter
         aTweets = new TweetsArrayAdapter(getActivity(), tweets);
-    }
+
+//        lvTweets.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
+       }
 
     public void addAll(List<Tweet> tweets) {
         aTweets.addAll(tweets);

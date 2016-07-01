@@ -11,9 +11,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.codepath.apps.mysimpletweet.models.Tweet;
 import com.squareup.picasso.Picasso;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -42,12 +45,21 @@ public class TweetsArrayAdapter extends ArrayAdapter<Tweet> {
         TextView tvHandle = (TextView) convertView.findViewById(R.id.tvHandle);
         TextView tvTimestamp = (TextView) convertView.findViewById(R.id.tvTimestamp);
         Button btnReply = (Button) convertView.findViewById(R.id.btnReply);
+ //       TextView tvFavorites = (TextView) convertView.findViewById(R.id.tvFavorites);
+ //       TextView tvRetweets = (TextView) convertView.findViewById(R.id.tvRetweets);
         // populate subviews
         //Log.d("HELP", tweet.getRelativeTimeAgo(tweet.getCreatedAt()));
         tvTimestamp.setText(tweet.getRelativeTimeAgo(tweet.getCreatedAt()));
         tvHandle.setText("@" + tweet.getUser().getScreenName());
         tvUserName.setText(tweet.getUser().getName());
         tvBody.setText(tweet.getBody());
+        //Toast.makeText(getContext(), String.valueOf(tweet.getFavCount()), Toast.LENGTH_LONG).show();
+//        if (String.valueOf(tweet.getFavCount()) != "0") {
+//            tvFavorites.setText("10");
+//        }
+//        if (String.valueOf(tweet.getRetweets()) != "0") {
+//            tvRetweets.setText("10");
+//        }
         ivProfileImage.setImageResource(android.R.color.transparent);
         Picasso.with(getContext()).load(tweet.getUser().getProfileImageUrl()).into(ivProfileImage);
 

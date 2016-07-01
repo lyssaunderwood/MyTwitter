@@ -31,12 +31,20 @@ public class Tweet {
     public String getImageUrl() {
         return imageUrl;
     }
+    public int getFavCount() {
+        return favCount;
+    }
+    public int getRetweets() {
+        return retweets;
+    }
 
     public String body;
     public long uid; // unique id for the tweet
     public User user; // store imbedded user object
     public String createdAt;
     public String imageUrl;
+    public int favCount;
+    public int retweets;
 
     public Tweet() {
     }
@@ -51,6 +59,9 @@ public class Tweet {
             tweet.createdAt = jsonObject.getString("created_at");
             tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
             tweet.imageUrl = jsonObject.getString("media_url");
+//            tweet.favCount = jsonObject.optInt("favorite_count");
+//            tweet.retweets = jsonObject.optInt("retweet_count");
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
