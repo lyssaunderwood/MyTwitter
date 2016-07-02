@@ -15,6 +15,8 @@ import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import cz.msebera.android.httpclient.Header;
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 
@@ -22,10 +24,20 @@ public class ProfileActivity extends AppCompatActivity {
     TwitterClient client;
     User user;
 
+    @BindView(R.id.tvFullName) TextView tvName; //= (TextView) findViewById(R.id.tvFullName);
+    @BindView(R.id.tvTagLine) TextView tvTagline; // = (TextView) findViewById(R.id.tvTagLine);
+    @BindView(R.id.tvFollowers) TextView tvFollowers; // = (TextView) findViewById(R.id.tvFollowers);
+    @BindView(R.id.tvFollowing) TextView tvFollowing; // = (TextView) findViewById(R.id.tvFollowing);
+    @BindView(R.id.ivProfileImage) ImageView ivProfileImage; // = (ImageView) findViewById(R.id.ivProfileImage);
+    @BindView(R.id.ivBannerImage) ImageView ivBannerImage; // = (ImageView) findViewById(R.id.ivBannerImage);
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        ButterKnife.bind(this);
         // get the screen name from activity that launches this
         String screenName = getIntent().getStringExtra("screen_name");
 
@@ -56,12 +68,12 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void populateProfileHeader(User user) {
-        TextView tvName = (TextView) findViewById(R.id.tvFullName);
-        TextView tvTagline = (TextView) findViewById(R.id.tvTagLine);
-        TextView tvFollowers = (TextView) findViewById(R.id.tvFollowers);
-        TextView tvFollowing = (TextView) findViewById(R.id.tvFollowing);
-        ImageView ivProfileImage = (ImageView) findViewById(R.id.ivProfileImage);
-        ImageView ivBannerImage = (ImageView) findViewById(R.id.ivBannerImage);
+//        TextView tvName = (TextView) findViewById(R.id.tvFullName);
+//        TextView tvTagline = (TextView) findViewById(R.id.tvTagLine);
+//        TextView tvFollowers = (TextView) findViewById(R.id.tvFollowers);
+//        TextView tvFollowing = (TextView) findViewById(R.id.tvFollowing);
+//        ImageView ivProfileImage = (ImageView) findViewById(R.id.ivProfileImage);
+//        ImageView ivBannerImage = (ImageView) findViewById(R.id.ivBannerImage);
         tvName.setText(user.getName());
         tvTagline.setText(user.getTagline());
         tvFollowers.setText(user.getFollowersCount() + " Followers");

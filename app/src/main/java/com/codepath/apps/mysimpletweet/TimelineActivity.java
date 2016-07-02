@@ -33,6 +33,8 @@ import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import cz.msebera.android.httpclient.Header;
 
 public class TimelineActivity extends AppCompatActivity {
@@ -43,21 +45,25 @@ public class TimelineActivity extends AppCompatActivity {
     Tweet tweetToRefresh;
     //String addQuery;
 
+    @BindView(R.id.viewpager) ViewPager vpPager;
+    @BindView(R.id.tabs) PagerSlidingTabStrip tabStrip;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeline);
+        ButterKnife.bind(this);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#55acee")));
 
         homeTimeline = new HomeTimelineFragment();
         mentions = new MentionsTimelineFragment();
 
         // get the viewpager
-        ViewPager vpPager = (ViewPager) findViewById(R.id.viewpager);
+        //ViewPager vpPager = (ViewPager) findViewById(R.id.viewpager);
         // set the viewpager adapter for the pager
         vpPager.setAdapter(new TweetsPagerAdapter(getSupportFragmentManager()));
         // find the sliding tabStrip
-        PagerSlidingTabStrip tabStrip = (PagerSlidingTabStrip) findViewById(R.id.tabs);
+        //PagerSlidingTabStrip tabStrip = (PagerSlidingTabStrip) findViewById(R.id.tabs);
         // attach the tabStrip to the viewpager
         tabStrip.setViewPager(vpPager);
 

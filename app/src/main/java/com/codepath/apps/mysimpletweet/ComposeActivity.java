@@ -28,18 +28,20 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.parceler.Parcels;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import cz.msebera.android.httpclient.Header;
 
 public class ComposeActivity extends AppCompatActivity {
     TwitterClient client;
     User user;
 
-    EditText etNewTweet;
-    Button btnTweet;
-    TextView tvHandle;
-    TextView tvUserName;
-    ImageView ivProfileImage;
-    TextView tvCount;
+    @BindView(R.id.etNewTweet) EditText etNewTweet;
+    @BindView(R.id.btnTweet) Button btnTweet;
+    @BindView(R.id.tvHandle) TextView tvHandle;
+    @BindView(R.id.tvUserName) TextView tvUserName;
+    @BindView(R.id.ivProfileImage) ImageView ivProfileImage;
+    @BindView(R.id.tvCount) TextView tvCount;
 
     String newTweet;
     Tweet tweet;
@@ -52,6 +54,7 @@ public class ComposeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compose);
+        ButterKnife.bind(this);
 
         usernameReply = getIntent().getStringExtra("name");
         replyTo = getIntent().getLongExtra("reply", 0);
@@ -71,9 +74,9 @@ public class ComposeActivity extends AppCompatActivity {
         });
 
         tweetCount = 140;
-        tvCount = (TextView) findViewById(R.id.tvCount);
+        //tvCount = (TextView) findViewById(R.id.tvCount);
         tvCount.setText(String.valueOf(tweetCount));
-        etNewTweet = (EditText) findViewById(R.id.etNewTweet);
+        //etNewTweet = (EditText) findViewById(R.id.etNewTweet);
         etNewTweet.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -125,11 +128,11 @@ public class ComposeActivity extends AppCompatActivity {
     }
 
     private void populateHeader(User user) {
-        etNewTweet = (EditText) findViewById(R.id.etNewTweet);
-        btnTweet = (Button) findViewById(R.id.btnTweet);
-        tvHandle = (TextView) findViewById(R.id.tvHandle);
-        tvUserName = (TextView) findViewById(R.id.tvUserName);
-        ivProfileImage = (ImageView) findViewById(R.id.ivProfileImage);
+        //etNewTweet = (EditText) findViewById(R.id.etNewTweet);
+        //btnTweet = (Button) findViewById(R.id.btnTweet);
+        //tvHandle = (TextView) findViewById(R.id.tvHandle);
+        //tvUserName = (TextView) findViewById(R.id.tvUserName);
+        //ivProfileImage = (ImageView) findViewById(R.id.ivProfileImage);
 
         if (usernameReply != "") {
             etNewTweet.setText(usernameReply);

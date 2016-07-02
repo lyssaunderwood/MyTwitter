@@ -20,6 +20,8 @@ import org.w3c.dom.Text;
 
 import java.util.List;
 
+import butterknife.BindView;
+
 // Taking the tweet objects and turning them into views displayed in the list
 public class TweetsArrayAdapter extends ArrayAdapter<Tweet> {
 
